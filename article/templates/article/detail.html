@@ -1,0 +1,35 @@
+{% extends "home/base.html" %}
+{% load staticfiles %}
+{% block page_title %}
+	{{ object.title }}
+{% endblock page_title %}
+{% block content %}
+	<header class="masthead" style='background-image: url("{% static "img/home-bg.jpg" %}")'>
+	    <div class="overlay">
+	    	
+	    </div>
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-8 col-md-10 mx-auto">
+	          <div class="site-heading">
+	            <h2>{{ object.title }}</h2>
+	            <span class="subheading">{{ object.description }}</span>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </header>
+	  <article>
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-8 col-md-10 mx-auto">
+	        	{{ article.content|safe }}
+	        	<div class="row">
+	        		<div class="col-md-12 text-right">
+	        			<p class="post-meta">Postado por {{ article.author.first_name }} em {{ article.created_at|date:"d F Y" }}</p>
+	        		</div>
+	        	</div>
+	        </div>
+	    </div>
+	</article>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "home/base.html" %}
+{% load staticfiles %}
+{% block content %}
+	<div class="col-md-6 text-center" style="margin: 0 auto; font-family: 'Montserrat', sans-serif; margin-top: 5%">
+		<h2>Cadastrar pergunta</h2>
+		{% if form.errors %}
+          <ul style="list-style: none !important;">
+            {% for field in form %}
+              {% if field.errors %}<li style="font-weight: bold; color: red; text-align: justify;">{{ field.errors|striptags }}</li>{% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+		<form method="post">
+			{% csrf_token %}
+			<div class="form-group">
+				{{ form.errors.question }}
+				{{ form.question }}
+			</div>
+			<input type="hidden" name="requester" id="id_requester" value="{{ request.user.pk }}">
+			<dir class="text-center" style="margin: 0 auto;">
+				<button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+			</dir>
+		</form>
+	</div>
+{% endblock content %}

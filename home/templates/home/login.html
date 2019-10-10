@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Thallison Raniere">
+  <title>Login</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+</head>
+<body style="background-color: #f5f5f5;">
+  <div class="container-fluid">
+        <div class="col-md-4 col-sm-6 col-xs-12 text-center" style="margin: 0 auto; margin-top: 10%; font-family: 'Montserrat', sans-serif;">
+            {% if form.errors %}
+                <p>Verifique o usuário e senha informados, tente novamente.</p>
+            {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p>Você não tem permissão para acessar essa página, faça o login.</p>
+                {% else %}
+                    <p>Faça o login para acessar essa página.</p>
+                {% endif %}
+            {% endif %}
+            <form class="form-signin" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 font-weight-normal text-center">Login</h1>
+                <input type="text" id="username" class="form-control" placeholder="usuário" name="username" required autofocus>
+                <input type="password" id="password" name="password" class="form-control" placeholder="senha" required style="margin-top: 15px;">
+                <button class="btn btn-primary" type="submit" style="margin-top: 20px;">Entrar</button>
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+    </div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'js/clean-blog.min.js' %}"></script>
+</body>
+</html>

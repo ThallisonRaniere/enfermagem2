@@ -1,0 +1,40 @@
+{% extends "home/base.html" %}
+{% load staticfiles %}
+{% block page_title %}
+	Perguntas e respostas
+{% endblock page_title %}
+{% block content %}
+	<header class="masthead" style='background-image: url("{% static "img/home-bg.jpg" %}")'>
+	    <div class="overlay">
+	    	
+	    </div>
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-lg-8 col-md-10 mx-auto">
+	          <div class="site-heading">
+	            <h2>Perguntas e respostas</h2>
+	            <span class="subheading">Perguntas feitas pelos alunos e respondida por profissionais de saúde.</span>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	</header>
+	<div class="container">
+		{% for question in questions %}
+		  <div class="row">
+		    <div class="col-lg-8 col-md-10 mx-auto">
+		      <div class="post-preview">
+		          <h2 class="post-title">
+		            <strong>P: </strong>{{ question.question }}
+		          </h2>
+		          <span class="subheading">
+		            <strong>R: </strong>{{ question.answer }}
+		          </span>
+		        <p class="post-meta">Pergunta feita por {{ question.formater_request }} em {{ question.created_at|date:"d F Y" }}</p>
+		      </div>
+		      <hr>
+		    </div>
+		  </div>
+		{% endfor %}
+	</div>
+{% endblock content %}
